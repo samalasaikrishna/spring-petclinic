@@ -6,6 +6,14 @@ node {
    stage ('build the packages') {
 	  sh 'mvn package'
    }
+   stage ('Junit tests') {
+     //performs junit test cases
+        junit 'target/surefire-reports/*.xml'
+        }
+   stage ('archiving' {
+     //archiving the artifacts
+     archive 'target/*.jar'
+     }
    stage('SonarQube analysis') {
     // performing sonarqube analysis with "withSonarQubeENV(<Name of Server configured in Jenkins>)"
     withSonarQubeEnv('sonarqube') {
