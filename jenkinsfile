@@ -10,7 +10,7 @@ node {
      //performs junit test cases
         junit 'target/surefire-reports/*.xml'
         }
-   stage ('archiving' {
+   stage ('archiving') {
      //archiving the artifacts
      archive 'target/*.jar'
      }
