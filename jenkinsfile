@@ -1,11 +1,10 @@
 node {
-
    stage('SCM') {
 	  git branch: 'main', url: 'https://github.com/samalasaikrishna/spring-petclinic.git'
    }
    stage ('build the packages') {
 	  sh 'mvn package'
-   }
+          }
    stage ('Junit tests') {
      //performs junit test cases
         junit 'target/surefire-reports/*.xml'
@@ -14,7 +13,7 @@ node {
      //archiving the artifacts
      archive 'target/*.jar'
      }
-   stage ('SonarQube analysis') {
+     stage ('sonar') {
     // performing sonarqube analysis with "withSonarQubeENV(<Name of Server configured in Jenkins>)"
     withSonarQubeEnv('SonarQube_scan') {
       // requires SonarQube Scanner for Maven 3.2+
