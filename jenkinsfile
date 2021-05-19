@@ -27,7 +27,7 @@ node {
               "files": [
                  {
                     "pattern": "spring-petclinic/*.zip",
-                    "target": "http://54.212.113.220:8081/artifactory/libs-snapshot-local/"
+                    "target": "libs-snapshot-local/"
                  }
                         ]
                      }''')
