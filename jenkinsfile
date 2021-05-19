@@ -3,7 +3,7 @@ node {
 	  git branch: 'main', url: 'https://github.com/samalasaikrishna/spring-petclinic.git'
    }
    stage ('build the packages') {
-	  sh 'mvn package'
+	  sh 'mvn install'
           }
    stage ('Junit tests') {
      //performs junit test cases
@@ -11,7 +11,7 @@ node {
         }
    stage ('archiving') {
      //archiving the artifacts
-     archive 'target/*.jar'
+     archiveArtifacts 'target/*.jar'
      }
      stage ('sonar') {
     // performing sonarqube analysis with "withSonarQubeENV(<Name of Server configured in Jenkins>)"
