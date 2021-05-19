@@ -3,7 +3,7 @@ node {
 	  git branch: 'main', url: 'https://github.com/samalasaikrishna/spring-petclinic.git'
    }
    stage ('build the packages') {
-	  sh 'mvn package'
+	  sh 'mvn install'
           }
    stage ('Junit tests') {
      //performs junit test cases
