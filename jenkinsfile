@@ -20,4 +20,17 @@ node {
       sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
     }
   }
+  stage ('JFrog_test') {
+     rtUpload (
+          serverId: 'JFrog',
+           spec: '''{
+              "files": [
+                 {
+                    "pattern": "spring-petclinic/*.zip",
+                    "target": "http://54.212.113.220:8081/artifactory/libs-snapshot-local/"
+                 }
+                        ]
+                     }''')
+}
+  
 }
