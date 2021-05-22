@@ -1,4 +1,5 @@
-node {
+pipeline {
+node ('maven') {
    stage('SCM') {
 	  git branch: 'main', url: 'https://github.com/samalasaikrishna/spring-petclinic.git'
    }
@@ -34,3 +35,4 @@ node {
                      }''')
     }
  }
+}
