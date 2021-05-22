@@ -3,7 +3,7 @@ node {
 	  git branch: 'main', url: 'https://github.com/samalasaikrishna/spring-petclinic.git'
    }
    stage ('build the packages') {
-	  sh 'mvn install'
+	  sh 'mvn deploy'
           }
    stage ('Junit tests') {
      //performs junit test cases
@@ -26,8 +26,9 @@ node {
            spec: '''{
               "files": [
                  {
-                    "pattern": "spring-petclinic/*.zip",
-                    "target": "libs-snapshot-local/"
+                    "pattern": "spring-petclinic/*",
+                    "target": "generic/"
+                    "recursive": "false"
                  }
                         ]
                      }''')
