@@ -1,6 +1,4 @@
-pipeline {
-agent any 
-stages {
+node {
    stage('SCM') {
 	  git branch: 'main', url: 'https://github.com/samalasaikrishna/spring-petclinic.git'
    }
@@ -35,5 +33,4 @@ stages {
                         ]
                      }''')
     }
- }
  }
