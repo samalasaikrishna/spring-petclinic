@@ -27,7 +27,7 @@ node {
               "files": [
                  {
                     "pattern": "/home/maven/workspace/night_build/spring-petclinic/*",
-                    "target": "generic/"
+                    "target": "generic/",
                     "recursive": "false"
                  }
                         ]
