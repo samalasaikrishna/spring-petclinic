@@ -33,4 +33,7 @@ node {
                         ]
                      }''')
     }
+stage ('clean the packages') {
+	  sh 'mvn clean'
+          }
  }
