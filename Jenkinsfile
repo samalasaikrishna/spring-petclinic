@@ -29,7 +29,7 @@ fileOperations([fileZipOperation(folderPath: 'target/spring-petclinic-2.4.5.jar'
         stage ('renaming_zip') {
 //this will rename the zip file appending the build number
                // sh 'cd ${WORKSPACE}/zip_test'
-                sh 'mv ${WORKSPACE}/zip_test/*.zip ${BUILD_NUMBER}-spring-petclinic.zip'
+                sh 'mv ${WORKSPACE}/zip_test/*.zip ${WORKSPACE}/zip_test/${BUILD_NUMBER}-spring-petclinic.zip'
 }
 stage ('Publish_Artifacts') {
 //This will upload generated zip file to artifactory repo-spring-petclinic
