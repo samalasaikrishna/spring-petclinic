@@ -20,20 +20,9 @@ node {
       sh 'mvn org.sonarsource.scanner.maven:sonar-maven-plugin:3.2:sonar'
     }
   }
-  stage ('JFrog_test') {
-     rtUpload (
-          serverId: 'JFrog',
-           spec: '''{
-              "files": [
-                 {
-                    "pattern": "/home/maven/workspace/night_build/spring-petclinic/*",
-                    "target": "generic/",
-                    "recursive": "false"
-                 }
-                        ]
-                     }''')
-    }
-stage ('clean the packages') {
-	  sh 'mvn clean'
-          }
- }
+
+stage ('creating_zip') {
+//this will create a zip file out of currently builded jar/ear/war file and stores zip in workspace
+fileOperations([fileZipOperation(folderPath: 'target/*.jar', outputFolderPath: '')])
+}
+}
