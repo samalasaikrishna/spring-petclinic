@@ -36,7 +36,7 @@ stage ('Publish_Artifacts') {
               "files": [
                  {
                     "pattern": "zip_test/*.zip",
-                    "target": "SDP-maven-Local",
+                    "target": "SDP-maven-Local"
                    
                  }
                         ]
