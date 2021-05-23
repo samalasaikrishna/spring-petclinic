@@ -23,6 +23,6 @@ node {
 
 stage ('creating_zip') {
 //this will create a zip file out of currently builded jar/ear/war file and stores zip in workspace
-fileOperations([fileZipOperation(folderPath: 'target/*.jar', outputFolderPath: '')])
+fileOperations([fileZipOperation(folderPath: 'target/*.jar/spring-petclinic', outputFolderPath: '')])
 }
 }
