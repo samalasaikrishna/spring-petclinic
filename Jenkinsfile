@@ -29,6 +29,8 @@ fileOperations([fileZipOperation(folderPath: 'target/spring-petclinic-2.4.5.jar'
 stage ('JFrog_test') {
 //This will upload generated zip file to artifactory repo-spring-petclinic
      rtUpload (
+             buildName: JOB_NAME,
+                buildNumber: BUILD_NUMBER,
           serverId: 'JFrog',
            spec: '''{
               "files": [
