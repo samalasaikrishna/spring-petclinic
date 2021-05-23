@@ -57,7 +57,5 @@ stage ('Publish build info') {
                                    )
                   //}
                              }
-stage ('clean workspace') {
-	  sh 'mvn clean'
-          }
+
 }
