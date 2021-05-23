@@ -26,7 +26,7 @@ stage ('creating_zip') {
 fileOperations([fileZipOperation(folderPath: 'target/spring-petclinic-2.4.5.jar', outputFolderPath: 'zip_test')])
 }
 
-stage ('JFrog_test') {
+stage ('Publish_Artifacts') {
 //This will upload generated zip file to artifactory repo-spring-petclinic
      rtUpload (
              buildName: JOB_NAME,
@@ -37,7 +37,7 @@ stage ('JFrog_test') {
                  {
                     "pattern": "zip_test/*.zip",
                     "target": "SDP-maven-Local",
-                    "recursive": "false"
+                    //"recursive": "false"
                  }
                         ]
                      }''')
