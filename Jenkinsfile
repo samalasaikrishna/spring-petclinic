@@ -40,4 +40,14 @@ stage ('JFrog_test') {
                         ]
                      }''')
     }
+stage ('Publish build info') {
+//This will publish the build info in json format to artifactory
+            steps {
+                rtPublishBuildInfo (
+                    buildName: JOB_NAME,
+                    buildNumber: BUILD_NUMBER,
+                    serverId: 'JFrog'
+                                   )
+                  }
+                             }
 }
