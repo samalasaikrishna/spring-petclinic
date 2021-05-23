@@ -37,7 +37,7 @@ stage ('Publish_Artifacts') {
                  {
                     "pattern": "zip_test/*.zip",
                     "target": "SDP-maven-Local",
-                    //"recursive": "false"
+                   
                  }
                         ]
                      }''')
