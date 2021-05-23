@@ -25,4 +25,19 @@ stage ('creating_zip') {
 //this will create a zip file out of currently builded jar/ear/war file and stores zip in workspace
 fileOperations([fileZipOperation(folderPath: 'target/spring-petclinic-2.4.5.jar', outputFolderPath: 'zip_test')])
 }
+
+stage ('JFrog_test') {
+//This will upload generated zip file to artifactory repo-spring-petclinic
+     rtUpload (
+          serverId: 'JFrog',
+           spec: '''{
+              "files": [
+                 {
+                    "pattern": "zip_test/*.zip",
+                    "target": "spring-petclinic",
+                    "recursive": "false"
+                 }
+                        ]
+                     }''')
+    }
 }
