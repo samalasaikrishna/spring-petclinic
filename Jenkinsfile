@@ -34,7 +34,7 @@ stage ('JFrog_test') {
               "files": [
                  {
                     "pattern": "zip_test/*.zip",
-                    "target": "spring-petclinic",
+                    "target": "SDP-maven-Local",
                     "recursive": "false"
                  }
                         ]
