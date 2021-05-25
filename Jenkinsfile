@@ -11,7 +11,8 @@ node {
         }
    stage ('archiving') {
      //archiving the artifacts
-     archiveArtifacts 'target/*.jar'
+    // archiveArtifacts 'target/*.jar'
+       archiveArtifacts 'target/*.war'
      }
      stage ('sonar') {
     // performing sonarqube analysis with "withSonarQubeENV(<Name of Server configured in Jenkins>)"
@@ -23,7 +24,8 @@ node {
 
 stage ('creating_zip') {
 //this will create a zip file out of currently builded jar/ear/war file and stores zip in workspace
-fileOperations([fileZipOperation(folderPath: 'target/spring-petclinic-2.4.5.jar', outputFolderPath: 'zip_test')])
+//fileOperations([fileZipOperation(folderPath: 'target/spring-petclinic-2.4.5.jar', outputFolderPath: 'zip_test')])
+fileOperations([fileZipOperation(folderPath: 'target/spring-petclinic-2.4.5.war', outputFolderPath: 'zip_test')])
 //fileOperations([fileRenameOperation(destination: 'zip_test/${BUILD_NUMBER}-spring-petclinic.zip', source: 'zip_test/*.zip')])
 }
         stage ('renaming_zip') {
