@@ -60,7 +60,7 @@ stage ('Publish build info') {
                   //}
                              }
     stage('clean workspace') {
-       sh 'mvn clean'
+      // sh 'mvn clean'
             sh 'rm -rf ${WORKSPACE}/zip_test/*'
         }
 
