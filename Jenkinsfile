@@ -64,17 +64,25 @@ stage ('Publish build info') {
             sh 'rm -rf ${WORKSPACE}/zip_test/*'
         }
 
-        stage ('ACS') {
-                script {
+       // stage ('ACS') {
+                //script {
                         //sshagent(credentials : ['jenkins-pem']) {
                         //sh "echo pwd"
-                        sh 'ssh -t -t ansible@ec2-3-142-205-70.us-east-2.compute.amazonaws.com -o StrictHostKeyChecking=no'
+                       // sh 'ssh -t -t ansible@ec2-3-142-205-70.us-east-2.compute.amazonaws.com -o StrictHostKeyChecking=no'
                        // sh "echo pwd"
                         //sh 'sudo -i -u root'
-                        sh 'cd playbooks'
+                       // sh 'cd playbooks'
                         //sh 'echo pwd'
                         //sh 'ansible-playbook -i hosts spring-petclinic.yml --user ansible'
-                       }
-                 }
+                      // }
+                // }
+
+
+        stage ('CD') {
+                
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'ACS', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i hosts spring-petclinic.yml --user ansible', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                
+                
+        }
 
 }
