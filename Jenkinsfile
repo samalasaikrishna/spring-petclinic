@@ -78,11 +78,14 @@ stage ('Publish build info') {
                 // }
 
 
+       // stage ('CD') {
+                
+              //  sshPublisher(publishers: [sshPublisherDesc(configName: 'ACS', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i hosts spring-petclinic.yml --user ansible', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+                
+                
+       // }
         stage ('CD') {
-                
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'ACS', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i hosts spring-petclinic.yml --user ansible', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-                
-                
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'ACS', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i /home/ansible/playbooks/hosts /home/ansible/playbooks/spring-petclinic.yml --user ansible', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
         }
 
 }
