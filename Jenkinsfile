@@ -64,4 +64,17 @@ stage ('Publish build info') {
             sh 'rm -rf ${WORKSPACE}/zip_test/*'
         }
 
+        stage ('ACS') {
+                script {
+                        //sshagent(credentials : ['jenkins-pem']) {
+                        //sh "echo pwd"
+                        sh 'ssh -t -t ansible@ec2-3-142-205-70.us-east-2.compute.amazonaws.com -o StrictHostKeyChecking=no'
+                       // sh "echo pwd"
+                        //sh 'sudo -i -u root'
+                        sh 'cd /home/ansible/playbooks'
+                        //sh 'echo pwd'
+                        sh 'ansible-playbook -i hosts spring-petclinic.yml --user ansible'
+                       }
+                 }
+
 }
