@@ -71,9 +71,9 @@ stage ('Publish build info') {
                         sh 'ssh -t -t ansible@ec2-3-142-205-70.us-east-2.compute.amazonaws.com -o StrictHostKeyChecking=no'
                        // sh "echo pwd"
                         //sh 'sudo -i -u root'
-                        sh 'cd /home/ansible/playbooks'
+                        sh 'cd playbooks'
                         //sh 'echo pwd'
-                        sh 'ansible-playbook -i hosts spring-petclinic.yml --user ansible'
+                        //sh 'ansible-playbook -i hosts spring-petclinic.yml --user ansible'
                        }
                  }
 
