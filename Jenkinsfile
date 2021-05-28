@@ -66,12 +66,47 @@ stage ('Publish build info') {
 
 
 
+        stage('checksum') {
+        
+        
+        for (def module:buildInfo.modules) {
+     
+
+      def coordinates = module.id.toString().split(':')
 
 
-        stage ('checksum') {
-                VAR=module.artifact.md5.@name:{{"$match":"${BUILD_NUMBER}-spring-petclinic.zip"}}
-               echo $VAR
+     def groupId = coordinates[0]
+
+    def artifactId = coordinates[1]
+
+     def version = coordinates[2]
+
+
+for (def artifact:module.artifacts) {
+					
+				if(!artifact.name.endsWith(".pom"))
+							
+						
+			{
+		printf(artifact.sha1)
+			}
+			}
+		else {
+			printf(artifact.sha1)
+			}
+		}
+        
+        
         }
+        
+        
+        
+
+
+        //stage ('checksum') {
+          //      VAR=module.artifact.md5.@name:{{"$match":"${BUILD_NUMBER}-spring-petclinic.zip"}}
+            //   echo $VAR
+       // }
 
 
 
