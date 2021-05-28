@@ -89,14 +89,14 @@ for (def artifact:module.artifacts) {
 						
 			{
 		printf(artifact.sha1)
-			}
+			
 			}
 		else {
 			printf(artifact.sha1)
 			}
 		}
         
-        
+        }
         }
         
         
