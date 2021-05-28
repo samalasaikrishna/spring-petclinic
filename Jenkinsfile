@@ -69,7 +69,7 @@ stage ('Publish build info') {
 
 
         stage ('checksum') {
-                VAR=module.artifact.md5.@name:{"$match":"${BUILD_NUMBER}-spring-petclinic.zip"}
+                VAR=module.artifact.md5.@name:{{"$match":"${BUILD_NUMBER}-spring-petclinic.zip"}}
                echo $VAR
         }
 
