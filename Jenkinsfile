@@ -64,23 +64,9 @@ stage ('Publish build info') {
             sh 'rm -rf ${WORKSPACE}/zip_test/*'
         }
 
-       stage ('CD') {
-    // This will invoke the playbook file in ansible server - ACS
-             sshPublisher(publishers: 
-                      [
-                       sshPublisherDesc(configName: 'ACS', transfers: 
-                                                   
-                       [
-                               sshTransfer(cleanRemote: false, excludes: '', 
-                                                                
-                       execCommand: 'ansible-playbook -i /home/ansible/playbooks/hosts /home/ansible/playbooks/spring-petclinic.yml --user ansible', 
-                       execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', 
-                                    remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')
-                       ],
-                                        usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
-                      ]
-                         )
-                    }
+        stage('ansible_server'){
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible control server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i /home/ansible/playbooks/hosts /home/ansible/playbooks/spring-petclinic.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//home/ansible', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'Jenkinsfile')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+        }
 
 }
 
