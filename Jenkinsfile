@@ -64,40 +64,43 @@ stage ('Publish build info') {
             sh 'rm -rf ${WORKSPACE}/zip_test/*'
         }
 
+       stage ('CD') {
+    // This will invoke the playbook file in ansible server - ACS
+             sshPublisher(publishers: 
+                      [
+                       sshPublisherDesc(configName: 'ACS', transfers: 
+                                                   
+                       [
+                               sshTransfer(cleanRemote: false, excludes: '', 
+                                                                
+                       execCommand: 'ansible-playbook -i /home/ansible/playbooks/hosts /home/ansible/playbooks/spring-petclinic.yml --user ansible', 
+                       execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', 
+                                    remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')
+                       ],
+                                        usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
+                      ]
+                         )
+                    }
 
+}
 
-        stage('checksum') {
-        
-        
-        for (def module:buildInfo.modules) {
-     
-
-      def coordinates = module.id.toString().split(':')
-
-
-     def groupId = coordinates[0]
-
-    def artifactId = coordinates[1]
-
-     def version = coordinates[2]
-
-
-for (def artifact:module.artifacts) {
-					
-				if(!artifact.name.endsWith(".pom"))
-							
-						
-			{
-		printf(artifact.sha1)
-			
-			}
-		else {
-			printf(artifact.sha1)
-			}
-		}
-        
-        }
-        }
+     //  stage('checksum') {
+               // for (def module:buildInfo.modules) {  
+              // def coordinates = module.id.toString().split(':')
+                // def groupId = coordinates[0]
+                // def artifactId = coordinates[1]
+                //  def version = coordinates[2]
+                //for (def artifact:module.artifacts) {
+			//if(!artifact.name.endsWith(".pom"))
+			  // {
+                                //printf(artifact.sha1)
+	                   // }
+		          //   else {
+			   //      printf(artifact.sha1)
+			    //         }
+		                 // }
+       // }
+       // }
         
         
         
@@ -133,8 +136,4 @@ for (def artifact:module.artifacts) {
                 
                 
        // }
-       // stage ('CD') {
-              //  sshPublisher(publishers: [sshPublisherDesc(configName: 'ACS', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i /home/ansible/playbooks/hosts /home/ansible/playbooks/spring-petclinic.yml --user ansible', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-       // }
-
-}
+        
