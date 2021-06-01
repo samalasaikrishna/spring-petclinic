@@ -64,11 +64,11 @@ stage ('Publish build info') {
             sh 'rm -rf ${WORKSPACE}/zip_test/*'
         }
 
-        stage('ansible_server'){
+       // stage('ansible_server'){
               //  sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible control server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i /home/ansible/playbooks/hosts /home/ansible/playbooks/spring-petclinic.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '//home/ansible', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'Jenkinsfile')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
        // sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible control server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-                sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible control server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i /home/ansible/playbooks/hosts /home/ansible/playbooks/spring-petclinic.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'Jenkinsfile')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
-        }
+               // sshPublisher(publishers: [sshPublisherDesc(configName: 'Ansible control server', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: 'ansible-playbook -i /home/ansible/playbooks/hosts /home/ansible/playbooks/spring-petclinic.yml', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: '', sourceFiles: 'Jenkinsfile')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+       // }
 
 }
 
